@@ -45,6 +45,9 @@ export default class Nav extends React.Component {
               <li activeClassName="active">
                 <Link to="todo" onClick={this.toggleCollapse.bind(this)}>Todo (React Only)</Link>
               </li>
+              <li activeClassName="active">
+                <Link to="simple-todo" onClick={this.toggleCollapse.bind(this)}>SimplerTodo</Link>
+              </li>
             </ul>
           </div>
         </div>
