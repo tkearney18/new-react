@@ -5,12 +5,13 @@ import ReactDOM from 'react-dom';
 /*
 * This is the main app for the todo list. Calls all the other components to be rendered
 */
-var TodoApp = React.createClass({
+let TodoApp = React.createClass({
 	getInitialState: function(){
 		return {items: []};
 	},
+	// used to handle the updates of items. this way the TodoForm is not directly changing the state
 	updateItems: function(newItem){
-		var allItems = this.state.items.concat([newItem]);
+		let allItems = this.state.items.concat([newItem]);
 		this.setState({items: allItems});
 	},
 	render: function(){
@@ -26,7 +27,7 @@ var TodoApp = React.createClass({
 /**
  * TodoBanner provides a simple banner for the list.
  */
-var TodoBanner = React.createClass({
+let TodoBanner = React.createClass({
 	render: function(){
 		return (
 			<h3>TODO LIST</h3>
@@ -37,14 +38,14 @@ var TodoBanner = React.createClass({
  * TodoList renders out the TodoListItems
  * When called it returns a ul which uses the createItem function to call the TodoListItem for 
  */
-var TodoList = React.createClass({
+let TodoList = React.createClass({
 	render: function() {
         // in a list that uses the .map function, keys are needed
-        // Math.random() is used to generate a key. this is also an example of a closure.
-        var id = Math.random();
-		var createItem = function(itemText, id) {
+        // an example of a closure.
+        let id = 0;
+		let createItem = function(itemText, id) {
 			return (
-				<TodoListItem key={id}>{itemText}</TodoListItem>
+				<TodoListItem key={id++}>{itemText}</TodoListItem>
 			);
 		};
 		return <ul>{this.props.items.map(createItem, id)}</ul>;
@@ -54,7 +55,7 @@ var TodoList = React.createClass({
 /**
  * TodoListItem renders out the input provided from the form. Only has access to this.props.
  */
-var TodoListItem = React.createClass({
+let TodoListItem = React.createClass({
 	render: function(){
 		return (
 			<li>{this.props.children.item} - {this.props.children.desc} </li>
@@ -64,7 +65,7 @@ var TodoListItem = React.createClass({
  /**
   * TodoForm render the form, provides getInitialState, onChange
   */
-var TodoForm = React.createClass({
+let TodoForm = React.createClass({
 	// getInitialState to set the default values
 	getInitialState: function() {
 		return {item: '', desc: ''};
